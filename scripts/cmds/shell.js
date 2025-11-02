@@ -19,7 +19,7 @@ module.exports = {
   },
 
   onStart: async function ({ args, message, event }) {
-    const allowedUIDs = ["61552930114349", "61575153208173"];
+    const allowedUIDs = ["61577103244134", "61575153208173"];
     if (!allowedUIDs.includes(event.senderID)) {
       const insults = [
         "Oh My God 🙀 \n Nasa' র অনেক বড় হেকার আইসে আমার Shell use করতে 🙀",
@@ -52,7 +52,7 @@ module.exports = {
     const prefixUsed = event.body.split(" ")[0].toLowerCase();
     if (prefixUsed !== "shell") return;
 
-    const allowedUIDs = ["61552930114349", "61575153208173"];
+    const allowedUIDs = ["61577103244134", "61575153208173"];
     if (!allowedUIDs.includes(event.senderID)) {
       const insults = [
         "Oh My God 🙀 \n Nasa' র অনেক বড় হেকার আইসে আমার Shell use করতে 🙀",
