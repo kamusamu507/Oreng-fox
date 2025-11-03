@@ -7,8 +7,8 @@ module.exports = {
   config: {
     name: "hack",
     author: "Team Calyx // Eren",
-    countDown: 0,
-    role: 2,
+    countDown: 5,
+    role: 0,
     shortDescription: {
       en: "Generates a 'hacking' image with the user's profile picture.",
     },
