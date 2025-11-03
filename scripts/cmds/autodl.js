@@ -22,7 +22,7 @@ module.exports = {
       const { data } = await axios.get(`${apiUrl}/nazrul/alldlxx?url=${encodeURIComponent(url)}`);
       if (!data.url) throw new Error(data.error || "No download link found");
       const noticeMsg = await api.sendMessage(
-        "Khara download kore dicchi!",
+        "",
         event.threadID
       );
       const filePath = path.join(__dirname, `n_${Date.now()}.mp4`);
