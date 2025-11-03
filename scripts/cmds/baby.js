@@ -37,7 +37,6 @@ module.exports = {
         let reply = event.body.toLowerCase();
         reply = this.removePrefix(reply, prefixes) || "bby";
 
-        // Updated URL instead of global.GoatBot.config.api
         const response = await axios.get(
           `https://www.noobs-api.rf.gd/dipto/baby?text=${encodeURIComponent(reply)}&senderID=${event.senderID}&font=1`
         );
@@ -60,14 +59,29 @@ module.exports = {
         }, event.messageID);
       } catch (err) {
         console.error(err.message);
-        api.sendMessage(" An error occurred.", event.threadID, event.messageID);
+        api.sendMessage("An error occurred.", event.threadID, event.messageID);
       }
     }
   },
 
   onChat: async function ({ api, event }) {
-    const randomReplies = ["𝐁𝐨𝐥𝐨 𝐣𝐚𝐧 𝐤𝐢 𝐤𝐨𝐫𝐭𝐞 𝐩𝐚𝐫𝐢 𝐭𝐦𝐫 𝐣𝐨𝐧𝐧𝐨🥹", "𝐆𝐚𝐣𝐚 𝐤𝐡𝐚 𝐦𝐚𝐧𝐮𝐬𝐡 𝐡𝐨 🍁🤡", "- নে আমার বস রে মেসেজ দে 😗 https://m.me/f3ckuU, "𝐏𝐫𝐞𝐦 𝐤𝐨𝐫𝐭𝐞 𝐜𝐡𝐚𝐢𝐥𝐞 𝐦𝐬𝐠 𝐝𝐞 💋 https://m.me/f3ckuU", "𝐀𝐦𝐚𝐤𝐞 𝐞𝐭𝐨 𝐧𝐚 𝐝𝐞𝐤𝐞 𝐚𝐦𝐫 𝐛𝐨𝐬𝐬 𝐓𝐨𝐦 𝐤𝐞 𝐞𝐤𝐭𝐚 𝐠𝐨𝐟 𝐝𝐞 😾", "𝐄𝐭𝐨 𝐛𝐚𝐛𝐲 𝐛𝐚𝐛𝐲 𝐤𝐨𝐫𝐨𝐬𝐡 𝐤𝐢𝐥𝐥𝐚𝐢 😒", "𝗔𝗺𝗿 𝗯𝗼𝘀𝘀 𝗷𝗲 𝘀𝗶𝗻𝗴𝗹𝗲 𝗰𝗵𝗼𝗸𝗲 𝗽𝗼𝗿𝗲 𝗻𝗮 𝘁𝗼𝗿 😒", "𝕂𝕚 𝕜𝕠𝕓𝕚 𝕜𝕠 𝕥𝕠𝕣 𝕛𝕠𝕟𝕟𝕠𝕚 𝕓𝕠𝕤𝕖 𝕒𝕔𝕙𝕚 😒", "𝐇𝐚𝐫𝐚𝐦𝐣𝐚𝐝𝐢 𝐛𝐨𝐥 𝐤𝐢 𝐛𝐨𝐥𝐛𝐢 🙈
-    ", "𝐀𝐦𝐫 𝐛𝐨𝐬𝐬 𝐞𝐫 𝐢𝐝 𝐛𝐨𝐬𝐬 𝐤𝐢𝐧𝐭𝐮 𝐬𝐢𝐧𝐠𝐥𝐞 https://m.me/f3ckuU", "বার বার ডাকলে মাথা গরম হয় কিন্তু 😒", "𝐁𝐨𝐥𝐨 𝐛𝐞𝐟𝐲 𝐤𝐢 𝐛𝐨𝐥𝐛𝐚 😭", "𝐀𝐦𝐚𝐤𝐞 𝐧𝐚 𝐝𝐞𝐤𝐞 𝐛𝐨𝐬𝐬 𝐞𝐫 𝐠𝐨𝐟 𝐡𝐨𝐲𝐞 𝐣𝐚 🙈 https://m.me/f3ckuU", "𝗔𝗺𝗿 𝗯𝗼𝘀𝘀 𝗧𝗼𝗺 𝗲𝗿 𝗺𝗼𝗻 𝗸𝗵𝗮𝗿𝗮𝗽 𝗯𝗼𝘀𝘀 𝗲r 𝗴𝗼𝗳 𝗻𝗮𝗶 😿"];
+    const randomReplies = [
+      "𝐁𝐨𝐥𝐨 𝐣𝐚𝐧 𝐤𝐢 𝐤𝐨𝐫𝐭𝐞 𝐩𝐚𝐫𝐢 𝐭𝐦𝐫 𝐣𝐨𝐧𝐧𝐨🥹",
+      "𝐆𝐚𝐣𝐚 𝐤𝐡𝐚 𝐦𝐚𝐧𝐮𝐬𝐡 𝐡𝐨 🍁🤡",
+      "- নে আমার বস রে মেসেজ দে 😗 https://m.me/f3ckuU",
+      "𝐏𝐫𝐞𝐦 𝐤𝐨𝐫𝐭𝐞 𝐜𝐡𝐚𝐢𝐥𝐞 𝐦𝐬𝐠 𝐝𝐞 https://m.me/f3ckuU 🙂💋",
+      "𝐀𝐦𝐚𝐤𝐞 𝐞𝐭𝐨 𝐧𝐚 𝐦𝐚𝐧𝐞 𝐚𝐦𝐫 𝐛𝐨𝐬𝐬 𝐓𝐨𝐦 𝐤𝐞 𝐞𝐤𝐭𝐚 𝐠𝐨𝐟 𝐝𝐞 😾",
+      "𝐄𝐭𝐨 𝐛𝐚𝐛𝐲 𝐛𝐚𝐛𝐲 𝐤𝐨𝐫𝐨𝐬𝐡 𝐤𝐢𝐥𝐥𝐚𝐢 😒",
+      "𝗔𝗺𝗿 𝗯𝗼𝘀𝘀 𝗷𝗲 𝘀𝗶𝗻𝗴𝗹𝗲 𝗰𝗵𝗼𝗸𝗲 𝗽𝗼𝗿𝗲 𝗻𝗮 𝘁𝗼𝗿 😒",
+      "𝕂𝕚 𝕜𝕠𝕓𝕿𝕚 𝕥𝕠𝕣 𝕛𝕠𝕟𝕟𝕠𝕚 𝕓𝕠𝕤𝕖 𝕒𝕔𝕙𝕚 😒",
+      "𝐇𝐚𝐫𝐚𝐦𝐣𝐚𝐝𝐢 𝐛𝐨𝐥 𝐤𝐢 𝐛𝐨𝐥𝐛𝐢 🙈",
+      "𝐀𝐦𝐫 𝐛𝐨𝐬𝐬 𝐞𝐫 𝐢𝐝 𝐛𝐨𝐬𝐬 𝐤𝐢𝐧𝐭𝐮 𝐬𝐢𝐧𝐠𝐥𝐞 https://m.me/f3ckuU 😉",
+      "বার বার ডাকলে মাথা গরম হয় কিন্তু 😒",
+      "𝐁𝐨𝐥𝐨 𝐛𝐞𝐟𝐲 𝐤𝐢 𝐛𝐨𝐥𝐛𝐚 😭",
+      "𝐀𝐦𝐚𝐤𝐞 𝐧𝐚 𝐝𝐞𝐤𝐞 𝐛𝐨𝐬𝐬 𝐞𝐫 𝐠𝐨𝐟 𝐡𝐨𝐲𝐞 𝐣𝐚 https://m.me/f3ckuU 🙈",
+      "𝗔𝗺𝗿 𝗯𝗼𝘀𝘀 𝗧𝗼𝗺 𝗲𝗿 𝗺𝗼𝗻 𝗸𝗵𝗮𝗿𝗮𝗽 𝗯𝗼𝘀𝘀 𝗲𝗿 𝗴𝗼𝗳 𝗻𝗮𝗶 😿"
+    ];
+
     const rand = randomReplies[Math.floor(Math.random() * randomReplies.length)];
 
     const messageBody = event.body ? event.body.toLowerCase() : "";
@@ -78,7 +92,7 @@ module.exports = {
       let messageToSend = messageBody;
       messageToSend = this.removePrefix(messageToSend, prefixes);
 
-      if (prefixes.some((prefix) => messageBody.startsWith(prefix))) {
+      if (prefixes.some(prefix => messageBody.startsWith(prefix))) {
         setTimeout(() => {
           api.setMessageReaction("🐰", event.messageID, () => {}, true);
         }, 400);
@@ -106,7 +120,6 @@ module.exports = {
           const remainingText = words.join(" ");
 
           try {
-            // Updated URL instead of global.GoatBot.config.api
             const response = await axios.get(
               `https://www.noobs-api.rf.gd/dipto/baby?text=${encodeURIComponent(remainingText)}&senderID=${event.senderID}&font=1`
             );
@@ -114,12 +127,7 @@ module.exports = {
 
             if (response.data.react) {
               setTimeout(() => {
-                api.setMessageReaction(
-                  response.data.react,
-                  event.messageID,
-                  () => {},
-                  true
-                );
+                api.setMessageReaction(response.data.react, event.messageID, () => {}, true);
               }, 500);
             }
 
@@ -134,17 +142,17 @@ module.exports = {
             }, event.messageID);
           } catch (err) {
             console.error(err.message);
-            api.sendMessage(" An error occurred.", event.threadID, event.messageID);
+            api.sendMessage("An error occurred.", event.threadID, event.messageID);
           }
         }
       }
     }
 
     // Handling reaction triggers based on certain text patterns
-    const reactions = ["haha", "👽", "lol", "pro", "gpt", "🧘‍♂️", "hehe"];
+    const reactions = ["haha", "", "lol", "pro", "gpt", "", "hehe"];
     if (reactions.some(reaction => messageBody.includes(reaction))) {
       setTimeout(() => {
-        api.setMessageReaction("‌", event.messageID, () => {}, true);
+        api.setMessageReaction("", event.messageID, () => {}, true);
       }, 500);
     }
   }
