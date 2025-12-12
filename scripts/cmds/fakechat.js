@@ -5,8 +5,8 @@ const axios = require('axios');
 
 module.exports = {
     config: {
-        name: "fakechat2",
-        aliases: ["fc2"],
+        name: "fakechat",
+        aliases: ["fc"],
         version: "1.0",
         author: "Vex_kshitiz",
         countDown: 2,
