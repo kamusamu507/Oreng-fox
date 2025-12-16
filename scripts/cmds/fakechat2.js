@@ -14,7 +14,7 @@ const mahmhd = async () => {
 
 module.exports = {
   config: {
-    name: "fakechat",
+    name: "fakechat2",
     aliases: ["fc2", "f", "fake"],
     version: "1.7",
     author: "MahMUD",
